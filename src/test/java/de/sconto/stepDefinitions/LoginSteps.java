@@ -1,13 +1,16 @@
 package de.sconto.stepDefinitions;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import de.sconto.pages.HomePage;
 import de.sconto.pages.LoginPage;
 import de.sconto.pages.ProfilePage;
+import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -17,6 +20,15 @@ public class LoginSteps {
     HomePage home;
     LoginPage login;
     ProfilePage profile;
+
+    @BeforeAll
+    public static void setup() {
+        Configuration.browser = "chrome";
+        ChromeOptions options = new ChromeOptions();
+        Configuration.browserCapabilities = options;
+        Configuration.timeout = 10000;
+        Configuration.pageLoadTimeout = 60000;
+    }
 
     @Given("User is on Home Page")
     public void is_on_HomePage() {

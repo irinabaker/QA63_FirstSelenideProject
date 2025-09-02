@@ -1,5 +1,6 @@
 package de.sconto.pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,7 +25,12 @@ public class HomePage {
     }
 
     public ProfilePage clickOnUserStatus() {
-        $(".headerElement__status--login").click();
+        $(".headerElement__status--login").shouldBe(Condition.visible).click();
         return Selenide.page(ProfilePage.class);
+    }
+
+    public ItemPage clickOnCategory(String category) {
+        $(".ccm-flexbox-flex1:nth-child(" + category + ")").shouldBe(Condition.visible).click();
+        return Selenide.page(ItemPage.class);
     }
 }

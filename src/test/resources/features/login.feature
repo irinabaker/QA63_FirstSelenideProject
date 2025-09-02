@@ -1,5 +1,6 @@
 Feature: Login
 
+  @login
   Scenario: Successful login
     Given User is on Home Page
     When User clicks on Login icon
